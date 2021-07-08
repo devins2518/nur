@@ -6,13 +6,13 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "devins2518";
     repo = "iosevka-serif";
-    rev = "669f1113ee324fd5cc19a73c94430444c2c4f0c0";
-    sha256 = "1hymgrrmj6z8avaqx5qiayr9vwnzg45fr14qndclm8k9l3y5h2ly";
+    rev = "e39be4da970ef909d8788fc8ef4d6de3a47a9ee8";
+    sha256 = "1kgwlccrmsvhsmvg3i21597p60n80zsh8a3yrds1615qjfmwvfa5";
   };
 
   installPhase = ''
     mkdir -p $out/share/fonts
-    install out/*.ttf $out/share/fonts
+    install iosevka-serif-term/*.ttf $out/share/fonts
     install norm/*.ttf $out/share/fonts
   '';
 
