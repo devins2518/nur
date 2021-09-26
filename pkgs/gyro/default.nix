@@ -1,25 +1,19 @@
-{ stdenv, fetchFromGitHub, lib, zig }:
+{ stdenv, pkgs, lib, zig }:
 
 stdenv.mkDerivation rec {
   name = "gyro";
-  version = "unstable-2021-05-30";
+  version = "unstable-2021-09-26";
 
-  src = fetchFromGitHub {
-    owner = "mattnite";
-    repo = "gyro";
-    rev = "0a9574691109233db520ad3d826ab760ec9a1326";
-    sha256 = "sha256-XkLJbUM+E4fbnzftp4TQfFXFrDDerCzEO+OmpnP46/U=";
-    fetchSubmodules = true;
+  src = fetchTarball {
+    url =
+      "https://github.com/mattnite/gyro/releases/download/0.3.0/gyro-0.3.0-linux-x86_64.tar.gz";
+    sha256 = "sha256:0p1n33qz0rrz625ma7wbj6hhjzghk44zq829crhw7l5zgz1r7frb";
   };
 
-  nativeBuildInputs = [ zig ];
-
-  preBuild = ''
-    export HOME=$TMPDIR
-  '';
-
   installPhase = ''
-    zig build -Drelease-safe -Dbootstrap --prefix $out
+    mkdir -p $out/bin
+    chmod +x gyro
+    install gyro $out/bin
   '';
 
   meta = with lib; {
