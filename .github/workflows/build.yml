@@ -50,7 +50,7 @@ jobs:
           -I nixpkgs=$(nix-instantiate --find-file nixpkgs) \
           -I $PWD
     - name: Build nix packages
-      run: nix run 'nixpkgs#nix-build-uncached' -- ci.nix -A cacheOutputs
+      run: nix run 'nixpkgs#nix-build-uncached' -- ci.nix -A cacheOutputs --extra-experimental-features flakes
     - name: Trigger NUR update
       if: ${{ matrix.nurRepo != 'nur' }}
       run: curl -XPOST "https://nur-update.herokuapp.com/update?repo=${{ matrix.nurRepo }}"
