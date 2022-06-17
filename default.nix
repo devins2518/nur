@@ -23,5 +23,5 @@ rec {
   ristate = pkgs.callPackage ./pkgs/ristate { };
   zig-master = pkgs.callPackage ./pkgs/zig-master { };
   zigup = pkgs.callPackage ./pkgs/zigup { };
-  zls = pkgs.callPackage ./pkgs/zls { zig-master = zig-master; };
+  # zls = pkgs.callPackage ./pkgs/zls { zig-master = zig-master; };
 }
