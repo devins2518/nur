@@ -1,14 +1,6 @@
-{ stdenv, fetchFromGitHub, lib, pkgs, system ? builtins.currentSystem, }:
+{ stdenv, fetchFromGitHub, lib, zig }:
 
-let
-  zig-overlay = pkgs.fetchFromGitHub {
-    owner = "mitchellh";
-    repo = "zig-overlay";
-    rev = "78cf6e432a7152acb28ca91ed74df0330ff9b756";
-    sha256 = "sha256-OnErjMYcPunIavTLWTHo19PpdB3RBvRYeDeZ9k7resw=";
-  };
-  zig = (import zig-overlay { inherit pkgs system; }).default;
-in stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "gyro";
   version = "unstable-2022-12-13";
 
