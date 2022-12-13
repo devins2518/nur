@@ -3,20 +3,20 @@
 let
   os = if stdenv.isLinux then "linux" else "macos";
   arch = if stdenv.isx86_64 then "x86_64" else "aarch64";
-  v = "0.11.0-dev.174+d823680e1";
+  v = "0.11.0-dev.740+4d2372139";
   shas = {
     x86_64-linux =
-      "9d0e4724c7bc999f0445af1e5e2e10b69989344e3f8ee126fbbe57397a6f66aa";
+      "bd83ec901811539918d7336303a5b6e02440f8a3e9ca20eec51188aaa50155e1";
     aarch64-linux =
-      "c1544a01bd0faf8cd5508329a71cfa35d4ba56c741929529c46bc351deaa9905";
+      "72e8f2014cb4b7b8ab970fc292cb759f58426a118de4ab10c1b8a8ee1979a79b";
     x86_64-darwin =
-      "d3aea33d16f7105dfe3cf4c48d02a938a6f750e099767879b8ee19bd51b7aa39";
+      "8ba0fb335f8e013c6a939596b5f5f43ce451668e38079c50ba58bf4465116a91";
     aarch64-darwin =
-      "c8d712ac0078f160479f7bc46b1f5afa7f9cadb736a4b865058da1605c57bb26";
+      "0ad66fdf578ae2a8f54025c69d1f92a0f2fa661f99cb983a9dbe10cc5a6c85bc";
   };
 in stdenv.mkDerivation rec {
   pname = "zig-master";
-  version = "unstable-2022-11-14";
+  version = "unstable-2022-12-13";
 
   src = fetchurl {
     url = "https://ziglang.org/builds/zig-${os}-${arch}-${v}.tar.xz";

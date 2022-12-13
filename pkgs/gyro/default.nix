@@ -1,17 +1,25 @@
-{ stdenv, fetchFromGitHub, lib, zig-master }:
+{ stdenv, fetchFromGitHub, lib, pkgs, system ? builtins.currentSystem, }:
 
-stdenv.mkDerivation rec {
+let
+  zig-overlay = pkgs.fetchFromGitHub {
+    owner = "mitchellh";
+    repo = "zig-overlay";
+    rev = "78cf6e432a7152acb28ca91ed74df0330ff9b756";
+    sha256 = "sha256-OnErjMYcPunIavTLWTHo19PpdB3RBvRYeDeZ9k7resw=";
+  };
+  zig = (import zig-overlay { inherit pkgs system; }).default;
+in stdenv.mkDerivation rec {
   name = "gyro";
-  version = "unstable-2022-06-17";
+  version = "unstable-2022-12-13";
 
   src = fetchFromGitHub {
     owner = "mattnite";
     repo = "gyro";
-    rev = "96d0bf95f490b9d5f91d4f8d48f432a0633d0df4";
-    sha256 = "sha256-O+A7l2WXVDZiYfOUCDiVuaz0cA+mp1eOwNOxAMa+3oo=";
+    rev = "30cdca545b7ee96124fdfdcf0a490913875fb87c";
+    sha256 = "sha256-7X2c0kmEGuHTMrUFNIFd0jSBDdfb51+0FFzy8hQpo8g=";
   };
 
-  nativeBuildInputs = [ zig-master ];
+  nativeBuildInputs = [ zig ];
 
   preBuild = ''
     export HOME=$TMPDIR
