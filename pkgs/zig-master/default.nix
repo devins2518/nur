@@ -3,6 +3,10 @@
 let
   os = if stdenv.isLinux then "linux" else "macos";
   arch = if stdenv.isx86_64 then "x86_64" else "aarch64";
+  path = {
+    "0.10.0" = "download";
+    "0.11.0-dev.740+4d2372139" = "builds";
+  };
   shas = {
     "0.10.0" = {
       x86_64-linux =
@@ -30,7 +34,7 @@ in stdenv.mkDerivation rec {
   version = "unstable-2022-12-13";
 
   src = fetchurl {
-    url = "https://ziglang.org/builds/zig-${os}-${arch}-${v}.tar.xz";
+    url = "https://ziglang.org/${path.${v}}/zig-${os}-${arch}-${v}.tar.xz";
     sha256 = shas.${v}.${stdenv.hostPlatform.system};
   };
 
