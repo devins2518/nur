@@ -21,7 +21,7 @@ let
         "02f7a7839b6a1e127eeae22ea72c87603fb7298c58bc35822a951479d53c7557";
     };
     ${master} = {
-      x86_64-linux = lib.fakeSha256;
+      x86_64-linux = "sha256-qq6xC2Urbrc2Yf8nn/UQ9nhEpSwnLgdZ78c0VHBBd9E=";
       aarch64-linux =
         "5ae415519ffbddbeaa9f82df58d3989d91c2c8889b56b2bc65cf5ec0d84ad3d7";
       x86_64-darwin =
