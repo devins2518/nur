@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, lib, v }:
+{ stdenv, fetchurl, lib, v, coreutils }:
 
 let
   os = if stdenv.isLinux then "linux" else "macos";
@@ -37,6 +37,12 @@ in stdenv.mkDerivation rec {
     url = url.${v};
     sha256 = shas.${v}.${stdenv.hostPlatform.system};
   };
+
+  postPatch = ''
+    # Zig's build looks at /usr/bin/env to find dynamic linking info. This
+    # doesn't work in Nix' sandbox. Use env from our coreutils instead.
+    substituteInPlace lib/std/zig/system/NativeTargetInfo.zig --replace "/usr/bin/env" "${coreutils}/bin/env"
+  '';
 
   installPhase = ''
     install -D zig "$out/bin/zig"
