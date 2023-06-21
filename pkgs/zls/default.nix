@@ -24,6 +24,7 @@ stdenv.mkDerivation rec {
     # runHook preInstall
     # zig build -Doptimize=ReleaseSafe -Dcpu=baseline --prefix $out install
     # runHook postInstall
+    mkdir $out
   '';
 
   meta = with lib; {
