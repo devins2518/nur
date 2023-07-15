@@ -55,7 +55,7 @@ in stdenv.mkDerivation rec {
   postPatch = ''
     # Zig's build looks at /usr/bin/env to find dynamic linking info. This
     # doesn't work in Nix' sandbox. Use env from our coreutils instead.
-    substituteInPlace lib/std/zig/system/NativeTargetInfo.zig --replace "/usr/bin/env" "${coreutils}/bin/env"
+    substituteInPlace lib/std/zig/system/NativeTargetInfo.zig --replace "/usr/bin/env" "${pkgs.coreutils}/bin/env"
   '';
 
   cmakeFlags = [
